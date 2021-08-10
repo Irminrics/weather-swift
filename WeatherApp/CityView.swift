@@ -12,6 +12,8 @@ struct CityView: View {
     @AppStorage("favouritesTimezone") var favouritesTimezone: [Int] = []
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
+    @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
+
     var currentGlobalTime = Date().toGlobalTime()
     
     var body: some View {
@@ -34,6 +36,7 @@ struct CityView: View {
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.bottom, 5)
+                
                 
                 
                 Button("Add the City to favourite"){
@@ -66,19 +69,22 @@ struct CityView: View {
                 ScrollView (showsIndicators: false) {
                     VStack(spacing: 10) {
                         
+                        //MainCityWeatherView(city: "Singapore", temperature: 36.0, icon: "01d", color: "afternoon1")
+                        
                         List {
                             
                             if(favouritesCity.count > 0) {
                                 ForEach((0..<1), id: \.self) { favIndex in
                                     MainCityWeatherView(city: favouritesCity[favIndex],
                                                         temperature: favouritesTemp[favIndex],
-                                                        mainWeather: convertWeatherToIcon(weather: favouritesMainWeather[favIndex]),
-                                                        color: convertTimeToColor(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)))
+                                                        icon: favouritesIcon[favIndex],
+                                                        color: convertTimeToColor(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)),
+                                                        textColor: getTextColour(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)))
                                         .swipeActions(allowsFullSwipe: false) {
                                             Button(role: .destructive) {
                                                 deleteWeather(with: favIndex)
                                             } label: {
-                                                Label("Delete", systemImage: "trash")
+                                                Label("", systemImage: "trash")
                                             }
                                         }
                                         .listRowSeparator(.hidden)
@@ -90,12 +96,13 @@ struct CityView: View {
                                     CityWeatherView(city: favouritesCity[favIndex],
                                                     timezone: favouritesTimezone[favIndex],
                                                     temperature: favouritesTemp[favIndex],
-                                                    color: convertTimeToColor(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)))
+                                                    color: convertTimeToColor(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)),
+                                                    textColor: getTextColour(time: currentGlobalTime.toLocalTime(secondsFromGMT: favouritesTimezone[favIndex]).toTimeFormat().replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)))
                                         .swipeActions(allowsFullSwipe: false) {
                                             Button(role: .destructive) {
                                                 deleteWeather(with: favIndex)
                                             } label: {
-                                                Label("Delete", systemImage: "trash.fill")
+                                                Label("", systemImage: "trash.fill")
                                             }
                                         }
                                         .swipeActions(edge: .leading ,allowsFullSwipe: false) {
@@ -125,16 +132,35 @@ struct CityView: View {
                 
                 Spacer()
                 
-            }.padding(.top, 40)
-        }.ignoresSafeArea()
+            }
+            .padding(.top, 40)
+            
+        }
+        .ignoresSafeArea()
+        
+        
         //}
     }
+    
+    func getTextColour(time: String) -> Color {
+        let intTime = Int(time) ?? 0
+        
+        if (1900 <= intTime && intTime <= 2400) || (0000 <= intTime && intTime <= 0600) {
+            return Color.white
+        }
+        else {
+            return Color.black
+        }
+        
+    }
+    
     
     func makeMainWeather(with index: Int) {
         favouritesCity.swapAt(0, index)
         favouritesTimezone.swapAt(0, index)
         favouritesTemp.swapAt(0, index)
         favouritesMainWeather.swapAt(0, index)
+        favouritesIcon.swapAt(0, index)
     }
     
     func deleteWeather(with index: Int) {
@@ -142,6 +168,7 @@ struct CityView: View {
         favouritesTimezone.remove(at: index)
         favouritesTemp.remove(at: index)
         favouritesMainWeather.remove(at: index)
+        favouritesIcon.remove(at: index)
     }
     
     
@@ -150,6 +177,7 @@ struct CityView: View {
         favouritesTimezone.removeAll()
         favouritesTemp.removeAll()
         favouritesMainWeather.removeAll()
+        favouritesIcon.removeAll()
     }
     
     func getWeatherData(city: String) {
@@ -171,6 +199,7 @@ struct CityView: View {
                         self.favouritesTimezone.append(decodedData.timezone)
                         self.favouritesTemp.append(decodedData.main.temp)
                         self.favouritesMainWeather.append(decodedData.weather[0].mainWeather)
+                        self.favouritesIcon.append(decodedData.weather[0].icon)
                     } catch {
                         print("Error! Something went wrong.")
                     }
@@ -183,22 +212,68 @@ struct CityView: View {
     func convertTimeToColor(time: String) -> String {
         let intTime = Int(time) ?? 0
         
-        if (0800 <= intTime &&  intTime < 1200) {
-            return "morning"
+        if (0300 <= intTime &&  intTime < 0400) {
+            return "midnight1"
         }
         
-        else if (1200 <= intTime &&  intTime < 1600) {
-            return "afternoon"
+        else if (0400 <= intTime &&  intTime < 0500) {
+            return "midnight2"
         }
         
-        else if (1600 <= intTime &&  intTime < 2000) {
-            return "evening"
+        else if (0500 <= intTime &&  intTime < 0600) {
+            return "midnight3"
         }
-        else if (2000 <= intTime &&  intTime < 2400) {
-            return "night"
+        
+        else if (0600 <= intTime &&  intTime < 0700) {
+            return "midnight4"
+        }
+        
+        else if (0700 <= intTime &&  intTime < 0800) {
+            return "morning1"
+        }
+        
+        else if (0800 <= intTime &&  intTime < 1000) {
+            return "morning2"
+        }
+        
+        else if (1000 <= intTime &&  intTime < 1100) {
+            return "morning3"
+        }
+        else if (1100 <= intTime &&  intTime < 1200) {
+            return "morning4"
+        }
+        else if (1200 <= intTime &&  intTime < 1300) {
+            return "afternoon1"
+        }
+        
+        else if (1300 <= intTime &&  intTime < 1400) {
+            return "afternoon2"
+        }
+        else if (1400 <= intTime &&  intTime < 1500) {
+            return "afternoon3"
+        }
+        else if (1500 <= intTime &&  intTime < 1700) {
+            return "evening1"
+        }
+        
+        else if (1700 <= intTime &&  intTime < 1900) {
+            return "evening2"
+        }
+        else if (1900 <= intTime &&  intTime < 2000) {
+            return "night1"
+        }
+        else if (2000 <= intTime &&  intTime < 2100) {
+            return "night2"
+        }
+        
+        else if (2100 <= intTime &&  intTime < 2200) {
+            return "night3"
+        }
+        else if (2200 <= intTime &&  intTime < 2300) {
+            return "night4"
         }
         else  {
-            return "midnight"
+            return "night5"
         }
     }
     
@@ -236,6 +311,7 @@ struct CityWeatherView: View {
     var timezone: Int
     var temperature: Double
     var color: String
+    var textColor: Color
     var body: some View {
         NavigationLink (
             destination: CityView(),
@@ -244,11 +320,11 @@ struct CityWeatherView: View {
                     VStack(alignment: .leading) {
                         HStack{Spacer()}
                         Text("\(city)")
-                            .foregroundColor(.black)
+                            .foregroundColor(textColor)
                             .font(.system(size: 35))
                         
                         Text("\(Date().toGlobalTime().toLocalTime(secondsFromGMT: timezone).toTimeFormat())")
-                            .foregroundColor(.black)
+                            .foregroundColor(textColor)
                         
                         Spacer()
                     }
@@ -256,7 +332,7 @@ struct CityWeatherView: View {
                     
                     VStack{
                         Text("\(Int(temperature))°")
-                            .foregroundColor(.black)
+                            .foregroundColor(textColor)
                             .font(.system(size: 70, weight: .bold))
                     }
                     .padding(.trailing, 15)
@@ -279,8 +355,9 @@ struct CityView_Previews: PreviewProvider {
 struct MainCityWeatherView: View {
     var city: String
     var temperature: Double
-    var mainWeather: String
+    var icon: String
     var color: String
+    var textColor: Color
     var body: some View {
         NavigationLink (
             destination: CityView(),
@@ -288,7 +365,7 @@ struct MainCityWeatherView: View {
                 HStack{
                     VStack(alignment: .leading) {
                         
-                        Image(systemName: "\(mainWeather)")
+                        Image("\(icon)")
                             .renderingMode(.original)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -299,11 +376,11 @@ struct MainCityWeatherView: View {
                         
                         VStack(alignment: .leading) {
                             Text("\(city)")
-                                .foregroundColor(.black)
+                                .foregroundColor(textColor)
                                 .font(.system(size: 35))
                             
                             Text("My current location")
-                                .foregroundColor(.black)
+                                .foregroundColor(textColor)
                                 .font(.system(size: 22, weight: .light))
                         }
                         .padding(.bottom, 28)
@@ -314,11 +391,10 @@ struct MainCityWeatherView: View {
                         Spacer()
                         Text("\(Int(temperature))°")
                             .frame(width: 150, alignment: .trailing)
-                            .foregroundColor(.black)
+                            .foregroundColor(textColor)
                             .font(.system(size: 70, weight: .bold))
                             .padding(.leading, 20)
                             .padding(.bottom, 15)
-                        
                     }
                 }
                 .frame(width: 390, height: 250)
