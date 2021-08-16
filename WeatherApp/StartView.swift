@@ -49,7 +49,7 @@ struct StartView: View {
                                 .padding(.bottom, 100)
                         })
                 }
-            }.ignoresSafeArea()
+            }
         }
     }
 }

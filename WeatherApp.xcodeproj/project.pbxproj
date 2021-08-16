@@ -14,6 +14,8 @@
 		2101391726BA6D6B00110060 /* weather-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2101391626BA6D6B00110060 /* weather-icon.png */; };
 		2101391926BA855800110060 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391826BA855800110060 /* CityView.swift */; };
 		2101391D26BAF8D100110060 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391C26BAF8D100110060 /* WeatherData.swift */; };
+		21782B2326C41C1A000C0603 /* MainCityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21782B2226C41C1A000C0603 /* MainCityWeatherView.swift */; };
+		21782B2526C41C63000C0603 /* CityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21782B2426C41C63000C0603 /* CityWeatherView.swift */; };
 		2179C40626BCE64D00172FF1 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179C40526BCE64D00172FF1 /* Array.swift */; };
 		21F7704B26BC4CCD00CBA8DC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7704A26BC4CCD00CBA8DC /* Date.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +30,8 @@
 		2101391626BA6D6B00110060 /* weather-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-icon.png"; sourceTree = "<group>"; };
 		2101391826BA855800110060 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		2101391C26BAF8D100110060 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		21782B2226C41C1A000C0603 /* MainCityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityWeatherView.swift; sourceTree = "<group>"; };
+		21782B2426C41C63000C0603 /* CityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherView.swift; sourceTree = "<group>"; };
 		2179C40526BCE64D00172FF1 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		21F7704A26BC4CCD00CBA8DC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -66,9 +70,11 @@
 				2101390726BA6B4300110060 /* WeatherApp.swift */,
 				2101390926BA6B4300110060 /* StartView.swift */,
 				2101391826BA855800110060 /* CityView.swift */,
+				21782B2426C41C63000C0603 /* CityWeatherView.swift */,
 				2179C40526BCE64D00172FF1 /* Array.swift */,
 				21F7704A26BC4CCD00CBA8DC /* Date.swift */,
 				2101391C26BAF8D100110060 /* WeatherData.swift */,
+				21782B2226C41C1A000C0603 /* MainCityWeatherView.swift */,
 				2101390B26BA6B4400110060 /* Assets.xcassets */,
 				2101391026BA6B4400110060 /* Info.plist */,
 				2101390D26BA6B4400110060 /* Preview Content */,
@@ -158,7 +164,9 @@
 				21F7704B26BC4CCD00CBA8DC /* Date.swift in Sources */,
 				2101391926BA855800110060 /* CityView.swift in Sources */,
 				2179C40626BCE64D00172FF1 /* Array.swift in Sources */,
+				21782B2526C41C63000C0603 /* CityWeatherView.swift in Sources */,
 				2101391D26BAF8D100110060 /* WeatherData.swift in Sources */,
+				21782B2326C41C1A000C0603 /* MainCityWeatherView.swift in Sources */,
 				2101390826BA6B4300110060 /* WeatherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,7 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -272,7 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -300,7 +308,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.irminrics.github.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.irminrics.github.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
