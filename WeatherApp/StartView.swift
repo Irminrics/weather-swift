@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct StartView: View {
-    @AppStorage("started") private var started = false
+    @AppStorage("favouritesCity") var favouritesCity: [String] = []
+    @AppStorage("favouritesTime") var favouritesTime: [String] = []
+    @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
+    @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
+    @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
     
     var body: some View {
         NavigationView {
@@ -38,7 +42,7 @@ struct StartView: View {
                         .multilineTextAlignment(.center)
                     
                     NavigationLink (
-                        destination: CityView().onAppear{started=true},
+                        destination: CityView(),
                         label: {
                             Text("Get Started")
                                 .frame(width: 250, height: 50)
@@ -47,9 +51,40 @@ struct StartView: View {
                                 .background(Color.yellow)
                                 .cornerRadius(12)
                                 .padding(.bottom, 100)
-                        })
+                        }).onAppear{updateWeatherData()}
                 }
             }
+        }
+    }
+    
+    func updateWeatherData() {
+        
+        for (index,city) in favouritesCity.enumerated() {
+            //convert string url to swift url
+            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
+            let url = URL(string: urlString)
+            
+            //use to connect to api; either get data, response or error
+            //use _ if u do not need it
+            URLSession.shared.dataTask(with: url!) {data, _, error in
+                //telling the machine this is an async operation so might have to wait
+                DispatchQueue.main.async {
+                    //if we get an actual data
+                    if let data = data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let decodedData = try decoder.decode(WeatherData.self, from: data)
+                            self.favouritesCity[index] = decodedData.name
+                            self.favouritesTime[index] = Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone).toTimeFormat()
+                            self.favouritesTemp[index] = decodedData.main.temp
+                            self.favouritesMainWeather[index] = decodedData.weather[0].mainWeather
+                            self.favouritesIcon[index] = decodedData.weather[0].icon
+                        } catch {
+                            print("Error! Something went wrong.")
+                        }
+                    }
+                }
+            }.resume()
         }
     }
 }

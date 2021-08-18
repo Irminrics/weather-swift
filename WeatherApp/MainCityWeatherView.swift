@@ -13,9 +13,9 @@ struct MainCityWeatherView: View {
     var color: String
     var textColor: Color
     var body: some View {
-        NavigationLink (
-            destination: CityView(),
-            label: {
+//        NavigationLink (
+//            destination: CityView(),
+//            label: {
                 HStack {
                     
                     Spacer()
@@ -62,7 +62,7 @@ struct MainCityWeatherView: View {
                     
                     Spacer()
                 }
-            })
+//            })
     }
 }
 

@@ -6,6 +6,17 @@
 //
 import SwiftUI
 
+struct SheetView: View {
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        Button("Press to dismiss") {
+            dismiss()
+        }
+        .font(.title)
+        .padding()
+    }
+}
 
 
 struct CityView: View {
@@ -14,8 +25,9 @@ struct CityView: View {
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
     @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
-    @State var searchQuery: String = ""
-    @State var isSearching = false
+    @State private var searchQuery: String = ""
+    @State private var isSearching = false
+    @State private var showingSheet = false
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
     
@@ -65,30 +77,47 @@ struct CityView: View {
                         .foregroundColor(.gray)
                 )
                 
-                //                                        Button("Add the City to favourite"){
+                //                                                        Button("Add the City to favourite"){
                 //
-                //                                            deleteAllWeathers()
-                //                                            getWeatherData(city: "Singapore")
-                //                                            getWeatherData(city: "China")
-                //                                            getWeatherData(city: "Europe")
-                //                                            getWeatherData(city: "Australia")
-                //                                            getWeatherData(city: "London")
+                //                                                            deleteAllWeathers()
+                //                                                            getWeatherData(city: "Singapore")
+                //                                                            getWeatherData(city: "China")
+                //                                                            getWeatherData(city: "Europe")
+                //                                                            getWeatherData(city: "Australia")
+                //                                                            getWeatherData(city: "London")
                 //
-                //                                        }
-                //                                        .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                //                                        .font(.system(size:16, weight: .bold))
-                //                                        .background(Color.yellow)
-                //                                        .foregroundColor(Color("darkblue"))
-                //                                        .cornerRadius(15)
+                //                                                        }
+                //                                                        .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                //                                                        .font(.system(size:16, weight: .bold))
+                //                                                        .background(Color.yellow)
+                //                                                        .foregroundColor(Color("darkblue"))
+                //                                                        .cornerRadius(15)
                 
                 VStack {
                     HStack {
                         Text("My Weather")
-                            .frame(width: 380, height: 20, alignment: .leading)
                             .font(.system(size: 18, weight: .bold))
                             .foregroundColor(Color("darkblue"))
-                            .padding(.top, 5)
+                            .padding(.leading, 20)
+                        
+                        Spacer()
+                        
+                        Button(action: {showingSheet.toggle()}, label: {
+                            Image(systemName: "plus.square")
+                            
+                        })
+                            .sheet(isPresented: $showingSheet) {
+                                SheetView()
+                            }
+                            .font(.system(size: 20))
+                            .padding(.trailing, 22)
+                        
                     }
+                    .padding(.top, 5)
+                    .foregroundColor(Color("darkblue"))
+                    
+                    
+                    
                     ScrollView (showsIndicators: false) {
                         VStack(spacing: 10){
                             
@@ -102,7 +131,7 @@ struct CityView: View {
                                                             icon: favouritesIcon[favIndex],
                                                             color: convertTimeToColor(time: favouritesTime[favIndex]),
                                                             textColor: getTextColour(time: favouritesTime[favIndex]))
-                                            .swipeActions(allowsFullSwipe: false) {
+                                            .swipeActions() {
                                                 Button(role: .destructive) {
                                                     deleteWeather(with: favIndex)
                                                 } label: {
@@ -120,14 +149,14 @@ struct CityView: View {
                                                         temperature: favouritesTemp[favIndex],
                                                         color: convertTimeToColor(time: favouritesTime[favIndex]),
                                                         textColor: getTextColour(time: favouritesTime[favIndex]))
-                                            .swipeActions(allowsFullSwipe: false) {
+                                            .swipeActions() {
                                                 Button(role: .destructive) {
                                                     deleteWeather(with: favIndex)
                                                 } label: {
                                                     Label("", systemImage: "trash.fill")
                                                 }
                                             }
-                                            .swipeActions(edge: .leading ,allowsFullSwipe: false) {
+                                            .swipeActions(edge: .leading) {
                                                 Button(role: .destructive) {
                                                     makeMainWeather(with: favIndex)
                                                 } label: {
@@ -152,25 +181,23 @@ struct CityView: View {
                         //scrollview
                     }
                     .frame(width: 430, height: 525)
-                    
-                    
                     Spacer()
-                    
+                }
+                
+                
+                VStack {
+                    Spacer()
                     Text("Powered by OpenWeather API")
                         .frame(width: 250, height:15, alignment: .center)
                         .font(.system(size: 18, weight: .light))
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
-                    
                     Spacer()
-                    
-                    
                 }
             }
-            .offset(y: -25)
+            .offset(y: -20)
             
         }
-        .ignoresSafeArea(.keyboard)
         .onAppear{updateWeatherData()}
         .onReceive(timer) { time in
             updateWeatherData()
