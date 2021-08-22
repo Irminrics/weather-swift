@@ -17,7 +17,6 @@ struct MainCityWeatherView: View {
 //            destination: CityView(),
 //            label: {
                 HStack {
-                    
                     Spacer()
                     
                     HStack{
@@ -34,15 +33,15 @@ struct MainCityWeatherView: View {
                             
                             VStack(alignment: .leading) {
                                 Text("\(city)")
+                                    .font(Font.custom("Montserrat-Regular", size: 35))
                                     .foregroundColor(textColor)
-                                    .font(.system(size: 35))
                                 
                                 Text("My current location")
                                     .foregroundColor(textColor)
-                                    .font(.system(size: 22, weight: .light))
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
                             }
+                            .padding(.trailing, 5)
                             .padding(.bottom, 28)
-                            .padding(.leading, 12)
                         }
                         
                         VStack{
@@ -51,8 +50,8 @@ struct MainCityWeatherView: View {
                                 .frame(width: 150, alignment: .trailing)
                                 .foregroundColor(textColor)
                                 .font(.system(size: 70, weight: .bold))
-                                .padding(.leading, 5)
                                 .padding(.bottom, 15)
+                                .padding(.trailing, -5)
                         }
                     }
                     .frame(width: 375, height: 250)
@@ -62,6 +61,7 @@ struct MainCityWeatherView: View {
                     
                     Spacer()
                 }
+                .listRowBackground(Color("lightgray"))
 //            })
     }
 }

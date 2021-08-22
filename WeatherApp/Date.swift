@@ -27,5 +27,10 @@ extension Date {
         dateFormatter.dateFormat = "HH:mm"
         return(dateFormatter.string(from: self))
     }
+    func toDayFormat() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMMM dd"
+        return(dateFormatter.string(from: self))
+    }
 
 }

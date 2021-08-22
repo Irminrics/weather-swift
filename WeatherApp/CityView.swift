@@ -30,52 +30,13 @@ struct CityView: View {
     @State private var showingSheet = false
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
-    
-    
     var body: some View {
         ZStack {
-            VStack {
-                Text("Choose a City")
-                    .frame(width: 300, height: 40)
-                    .font(.system(size: 40, weight: .bold))
-                    .foregroundColor(Color("darkblue"))
-                    .multilineTextAlignment(.center)
-                
-                
-                Text("Select a country to see the weather")
-                    .frame(width: 250, height:50, alignment: .center)
-                    .font(.system(size: 18, weight: .light))
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                    .padding(.bottom, 5)
-                
-                HStack {
-                    TextField(" Search country", text: $searchQuery)
-                        .padding(.leading, 24)
-                        .padding(.trailing, 24)
-                }
-                .frame(width: 355, height: 50)
-                .padding(.leading, 10)
-                .padding(.trailing, 10)
-                .background(Color("lightgray"))
-                .cornerRadius(15)
-                .onTapGesture {
-                    isSearching = true
-                }
-                .overlay(
-                    HStack{
-                        Image(systemName: "magnifyingglass")
-                        Spacer()
-                        if (isSearching) {
-                            Button(action: {searchQuery = ""}, label: {
-                                Image(systemName: "xmark.circle.fill")
-                                    .padding(.vertical)
-                            })
-                        }
-                    }
-                        .padding(.horizontal, 10)
-                        .foregroundColor(.gray)
-                )
+            
+            Color("lightgray")
+                .ignoresSafeArea()
+            
+            VStack{
                 
                 //                                                        Button("Add the City to favourite"){
                 //
@@ -93,36 +54,50 @@ struct CityView: View {
                 //                                                        .foregroundColor(Color("darkblue"))
                 //                                                        .cornerRadius(15)
                 
+                Spacer()
+                
                 VStack {
                     HStack {
-                        Text("My Weather")
-                            .font(.system(size: 18, weight: .bold))
-                            .foregroundColor(Color("darkblue"))
-                            .padding(.leading, 20)
-                        
-                        Spacer()
-                        
                         Button(action: {showingSheet.toggle()}, label: {
-                            Image(systemName: "plus.square")
-                            
+                            Image(systemName: "globe")
+                                .padding(5)
                         })
                             .sheet(isPresented: $showingSheet) {
                                 SheetView()
                             }
-                            .font(.system(size: 20))
-                            .padding(.trailing, 22)
+                            .foregroundColor(Color.yellow)
+                            .background(Color.white)
+                            .font(.system(size: 18))
+                            .cornerRadius(12)
+                            .padding(.leading, 30)
                         
+                        Spacer()
+                        
+                        Text(Date().toDayFormat())
+                            .font(Font.custom("Montserrat-Regular", size: 20))
+                        
+                        Spacer()
+                        
+                        Button(action: {showingSheet.toggle()}, label: {
+                            Image(systemName: "plus")
+                                .padding(6)
+                        })
+                            .sheet(isPresented: $showingSheet) {
+                                SheetView()
+                            }
+                            .foregroundColor(Color.black)
+                            .background(Color.white)
+                            .font(.system(size: 18))
+                            .cornerRadius(12)
+                            .padding(.trailing, 30)
                     }
-                    .padding(.top, 5)
-                    .foregroundColor(Color("darkblue"))
-                    
-                    
-                    
+                    .padding(.bottom, 10)
+                    .background(Color("lightgray"))
+                }
+                
+                VStack{
                     ScrollView (showsIndicators: false) {
                         VStack(spacing: 10){
-                            
-                            //MainCityWeatherView(city: "Singapore", temperature: 39.0, icon: "01d", color: "midnight1", textColor: Color.white)
-                            
                             List {
                                 if(favouritesCity.count > 0) {
                                     ForEach((0..<1).filter({"\(favouritesCity[$0])".contains(searchQuery) || searchQuery.isEmpty}), id: \.self) { favIndex in
@@ -167,41 +142,36 @@ struct CityView: View {
                                             .listRowSeparator(.hidden)
                                     }
                                 }
-                                
-                                
-                                
-                                //list
-                            }
+                            }//list
+                            .frame(width: 430, height: 655, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .background(Color("lightgray"))
                             .listStyle(PlainListStyle())
-                            .frame(width: 430, height: 525, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            
-                            
-                            
                         }
-                        //scrollview
-                    }
-                    .frame(width: 430, height: 525)
-                    Spacer()
+                    } //scrollview
+                    .frame(width: 430, height: 655, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 }
                 
-                
+                Spacer()
+
                 VStack {
-                    Spacer()
                     Text("Powered by OpenWeather API")
-                        .frame(width: 250, height:15, alignment: .center)
                         .font(.system(size: 18, weight: .light))
                         .foregroundColor(.gray)
                         .multilineTextAlignment(.center)
-                    Spacer()
                 }
+                .padding()
+                
+                
             }
-            .offset(y: -20)
-            
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .background(Color("lightgray"))
         .onAppear{updateWeatherData()}
         .onReceive(timer) { time in
             updateWeatherData()
         }
+        
     }
     
     
@@ -240,7 +210,7 @@ struct CityView: View {
         let filteredTime = time.replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)
         let intTime = Int(filteredTime) ?? 0
         
-        if (1900 <= intTime && intTime <= 2400) || (0000 <= intTime && intTime <= 0600) {
+        if (2200 <= intTime && intTime <= 2400) || (0000 <= intTime && intTime <= 0500) {
             return Color.white
         }
         else {
@@ -308,75 +278,32 @@ struct CityView: View {
         let filteredTime = time.replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)
         let intTime = Int(filteredTime) ?? 0
         
-        if (0300 <= intTime &&  intTime < 0400) {
-            return "midnight1"
+        if (0500 <= intTime &&  intTime < 0800) {
+            return "midnight"
+        }
+        else if (0800 <= intTime &&  intTime < 1300) {
+            return "morning"
         }
         
-        else if (0400 <= intTime &&  intTime < 0500) {
-            return "midnight2"
+        else if (1300 <= intTime &&  intTime < 1900) {
+            return "afternoon"
         }
-        
-        else if (0500 <= intTime &&  intTime < 0600) {
-            return "midnight3"
-        }
-        
-        else if (0600 <= intTime &&  intTime < 0700) {
-            return "midnight4"
-        }
-        
-        else if (0700 <= intTime &&  intTime < 0800) {
-            return "morning1"
-        }
-        
-        else if (0800 <= intTime &&  intTime < 1000) {
-            return "morning2"
-        }
-        
-        else if (1000 <= intTime &&  intTime < 1100) {
-            return "morning3"
-        }
-        else if (1100 <= intTime &&  intTime < 1200) {
-            return "morning4"
-        }
-        else if (1200 <= intTime &&  intTime < 1300) {
-            return "afternoon1"
-        }
-        
-        else if (1300 <= intTime &&  intTime < 1400) {
-            return "afternoon2"
-        }
-        else if (1400 <= intTime &&  intTime < 1500) {
-            return "afternoon3"
-        }
-        else if (1500 <= intTime &&  intTime < 1700) {
-            return "evening1"
-        }
-        
-        else if (1700 <= intTime &&  intTime < 1900) {
-            return "evening2"
-        }
-        else if (1900 <= intTime &&  intTime < 2000) {
-            return "night1"
-        }
-        else if (2000 <= intTime &&  intTime < 2100) {
-            return "night2"
-        }
-        
-        else if (2100 <= intTime &&  intTime < 2200) {
-            return "night3"
-        }
-        else if (2200 <= intTime &&  intTime < 2300) {
-            return "night4"
+        else if (1900 <= intTime &&  intTime < 2200) {
+            return "evening"
         }
         else  {
-            return "night5"
+            return "night"
         }
     }
     
+    
 }
+
 
 struct CityView_Previews: PreviewProvider {
     static var previews: some View {
         CityView()
     }
 }
+
+

@@ -25,21 +25,22 @@ struct CityWeatherView: View {
                             HStack{Spacer()}
                             Text("\(city)")
                                 .foregroundColor(textColor)
-                                .font(.system(size: 35))
+                                .font(Font.custom("Montserrat-Regular", size: 35))
                             
                             Text("\(time)")
                                 .foregroundColor(textColor)
+                                .font(Font.custom("Montserrat-Regular", size: 20))
                             
                             Spacer()
                         }
-                        .padding(.leading, 20)
+                        .padding(.leading, 16)
                         
                         VStack{
                             Text("\(Int(round(temperature)))°")
                                 .foregroundColor(textColor)
                                 .font(.system(size: 70, weight: .bold))
                         }
-                        .padding(.trailing, 15)
+                        .padding(.trailing, 13)
                         
                     }
                     .frame(width: 375, height: 120, alignment: .center)
@@ -49,6 +50,7 @@ struct CityWeatherView: View {
                     Spacer()
                     
                 }
+                .listRowBackground(Color("lightgray"))
 //            })
     }
 }
