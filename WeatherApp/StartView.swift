@@ -57,11 +57,20 @@ struct StartView: View {
         }
     }
     
+    func deleteAllWeathers() {
+        favouritesCity.removeAll()
+        favouritesTime.removeAll()
+        favouritesTemp.removeAll()
+        favouritesMainWeather.removeAll()
+        favouritesIcon.removeAll()
+    }
+    
     func updateWeatherData() {
         
         for (index,city) in favouritesCity.enumerated() {
+            let filteredCity = city.replacingOccurrences(of: " ", with: "%20")
             //convert string url to swift url
-            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
+            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(filteredCity)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
             let url = URL(string: urlString)
             
             //use to connect to api; either get data, response or error

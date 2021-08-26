@@ -13,6 +13,8 @@
 		2101391726BA6D6B00110060 /* weather-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2101391626BA6D6B00110060 /* weather-icon.png */; };
 		2101391926BA855800110060 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391826BA855800110060 /* CityView.swift */; };
 		2101391D26BAF8D100110060 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391C26BAF8D100110060 /* WeatherData.swift */; };
+		213763A726D3AB8200FDF3AC /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213763A626D3AB8200FDF3AC /* AddView.swift */; };
+		213763AB26D4013A00FDF3AC /* CityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213763AA26D4013A00FDF3AC /* CityData.swift */; };
 		2171B7D726D28F8E00858B9E /* Montserrat-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2171B7C426D28F8E00858B9E /* Montserrat-LightItalic.ttf */; };
 		2171B7D826D28F8E00858B9E /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2171B7C526D28F8E00858B9E /* Montserrat-Medium.ttf */; };
 		2171B7D926D28F8E00858B9E /* Montserrat-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2171B7C626D28F8E00858B9E /* Montserrat-BoldItalic.ttf */; };
@@ -36,6 +38,8 @@
 		21782B2526C41C63000C0603 /* CityWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21782B2426C41C63000C0603 /* CityWeatherView.swift */; };
 		2179C40626BCE64D00172FF1 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179C40526BCE64D00172FF1 /* Array.swift */; };
 		219D777C26D22535006998C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2101390B26BA6B4400110060 /* Assets.xcassets */; };
+		21E2C06F26D690B7003589FD /* CountryPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E2C06E26D690B7003589FD /* CountryPool.swift */; };
+		21E2C07126D6AF6E003589FD /* DetailedCityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E2C07026D6AF6E003589FD /* DetailedCityView.swift */; };
 		21F7704B26BC4CCD00CBA8DC /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F7704A26BC4CCD00CBA8DC /* Date.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +53,8 @@
 		2101391626BA6D6B00110060 /* weather-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-icon.png"; sourceTree = "<group>"; };
 		2101391826BA855800110060 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		2101391C26BAF8D100110060 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		213763A626D3AB8200FDF3AC /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		213763AA26D4013A00FDF3AC /* CityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityData.swift; sourceTree = "<group>"; };
 		2171B7C426D28F8E00858B9E /* Montserrat-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-LightItalic.ttf"; sourceTree = "<group>"; };
 		2171B7C526D28F8E00858B9E /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		2171B7C626D28F8E00858B9E /* Montserrat-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -71,6 +77,8 @@
 		21782B2226C41C1A000C0603 /* MainCityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCityWeatherView.swift; sourceTree = "<group>"; };
 		21782B2426C41C63000C0603 /* CityWeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityWeatherView.swift; sourceTree = "<group>"; };
 		2179C40526BCE64D00172FF1 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		21E2C06E26D690B7003589FD /* CountryPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPool.swift; sourceTree = "<group>"; };
+		21E2C07026D6AF6E003589FD /* DetailedCityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedCityView.swift; sourceTree = "<group>"; };
 		21F7704A26BC4CCD00CBA8DC /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,9 +118,13 @@
 				2101390926BA6B4300110060 /* StartView.swift */,
 				2101391826BA855800110060 /* CityView.swift */,
 				21782B2426C41C63000C0603 /* CityWeatherView.swift */,
+				213763A626D3AB8200FDF3AC /* AddView.swift */,
+				21E2C06E26D690B7003589FD /* CountryPool.swift */,
 				2179C40526BCE64D00172FF1 /* Array.swift */,
 				21F7704A26BC4CCD00CBA8DC /* Date.swift */,
 				2101391C26BAF8D100110060 /* WeatherData.swift */,
+				21E2C07026D6AF6E003589FD /* DetailedCityView.swift */,
+				213763AA26D4013A00FDF3AC /* CityData.swift */,
 				21782B2226C41C1A000C0603 /* MainCityWeatherView.swift */,
 				2101390B26BA6B4400110060 /* Assets.xcassets */,
 				2101391026BA6B4400110060 /* Info.plist */,
@@ -245,7 +257,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2101390A26BA6B4300110060 /* StartView.swift in Sources */,
+				21E2C07126D6AF6E003589FD /* DetailedCityView.swift in Sources */,
 				21F7704B26BC4CCD00CBA8DC /* Date.swift in Sources */,
+				213763AB26D4013A00FDF3AC /* CityData.swift in Sources */,
+				213763A726D3AB8200FDF3AC /* AddView.swift in Sources */,
+				21E2C06F26D690B7003589FD /* CountryPool.swift in Sources */,
 				2101391926BA855800110060 /* CityView.swift in Sources */,
 				2179C40626BCE64D00172FF1 /* Array.swift in Sources */,
 				21782B2526C41C63000C0603 /* CityWeatherView.swift in Sources */,

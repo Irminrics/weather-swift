@@ -13,9 +13,9 @@ struct MainCityWeatherView: View {
     var color: String
     var textColor: Color
     var body: some View {
-//        NavigationLink (
-//            destination: CityView(),
-//            label: {
+        NavigationLink (
+            destination: DetailedCityView(bgColor: color, fontColor: Color.white),
+            label: {
                 HStack {
                     Spacer()
                     
@@ -62,12 +62,13 @@ struct MainCityWeatherView: View {
                     Spacer()
                 }
                 .listRowBackground(Color("lightgray"))
-//            })
+            })
+        
     }
 }
 
 struct MainCityWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCityWeatherView(city: "Singapore", temperature: 39.0, icon: "01d", color: "midnight1", textColor: Color.white)
+        MainCityWeatherView(city: "Singapore", temperature: 39.0, icon: "01d", color: "night", textColor: Color.white)
     }
 }

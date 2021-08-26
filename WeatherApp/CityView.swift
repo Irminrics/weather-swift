@@ -6,18 +6,6 @@
 //
 import SwiftUI
 
-struct SheetView: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        Button("Press to dismiss") {
-            dismiss()
-        }
-        .font(.title)
-        .padding()
-    }
-}
-
 
 struct CityView: View {
     @AppStorage("favouritesCity") var favouritesCity: [String] = []
@@ -25,8 +13,6 @@ struct CityView: View {
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
     @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
-    @State private var searchQuery: String = ""
-    @State private var isSearching = false
     @State private var showingSheet = false
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
@@ -37,34 +23,14 @@ struct CityView: View {
                 .ignoresSafeArea()
             
             VStack{
-                
-                //                                                        Button("Add the City to favourite"){
-                //
-                //                                                            deleteAllWeathers()
-                //                                                            getWeatherData(city: "Singapore")
-                //                                                            getWeatherData(city: "China")
-                //                                                            getWeatherData(city: "Europe")
-                //                                                            getWeatherData(city: "Australia")
-                //                                                            getWeatherData(city: "London")
-                //
-                //                                                        }
-                //                                                        .frame(width: 280, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                //                                                        .font(.system(size:16, weight: .bold))
-                //                                                        .background(Color.yellow)
-                //                                                        .foregroundColor(Color("darkblue"))
-                //                                                        .cornerRadius(15)
-                
                 Spacer()
                 
                 VStack {
                     HStack {
-                        Button(action: {showingSheet.toggle()}, label: {
+                        Button(action: {}, label: {
                             Image(systemName: "globe")
                                 .padding(5)
                         })
-                            .sheet(isPresented: $showingSheet) {
-                                SheetView()
-                            }
                             .foregroundColor(Color.yellow)
                             .background(Color.white)
                             .font(.system(size: 18))
@@ -100,7 +66,7 @@ struct CityView: View {
                         VStack(spacing: 10){
                             List {
                                 if(favouritesCity.count > 0) {
-                                    ForEach((0..<1).filter({"\(favouritesCity[$0])".contains(searchQuery) || searchQuery.isEmpty}), id: \.self) { favIndex in
+                                    ForEach((0..<1), id: \.self) { favIndex in
                                         MainCityWeatherView(city: favouritesCity[favIndex],
                                                             temperature: favouritesTemp[favIndex],
                                                             icon: favouritesIcon[favIndex],
@@ -118,7 +84,7 @@ struct CityView: View {
                                 }
                                 
                                 if(favouritesCity.count > 1) {
-                                    ForEach((1..<favouritesCity.count).filter({"\(favouritesCity[$0])".contains(searchQuery) || searchQuery.isEmpty}), id: \.self) { favIndex in
+                                    ForEach((1..<favouritesCity.count), id: \.self) { favIndex in
                                         CityWeatherView(city: favouritesCity[favIndex],
                                                         time: favouritesTime[favIndex],
                                                         temperature: favouritesTemp[favIndex],
@@ -178,8 +144,9 @@ struct CityView: View {
     func updateWeatherData() {
         
         for (index,city) in favouritesCity.enumerated() {
+            let filteredCity = city.replacingOccurrences(of: " ", with: "%20")
             //convert string url to swift url
-            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
+            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(filteredCity)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
             let url = URL(string: urlString)
             
             //use to connect to api; either get data, response or error
