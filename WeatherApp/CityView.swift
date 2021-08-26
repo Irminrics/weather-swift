@@ -65,6 +65,7 @@ struct CityView: View {
                     ScrollView (showsIndicators: false) {
                         VStack(spacing: 10){
                             List {
+                                
                                 if(favouritesCity.count > 0) {
                                     ForEach((0..<1), id: \.self) { favIndex in
                                         MainCityWeatherView(city: favouritesCity[favIndex],
@@ -110,7 +111,7 @@ struct CityView: View {
                                 }
                             }//list
                             .frame(width: 430, height: 655, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .background(Color("lightgray"))
+                            .listRowBackground(Color("lightgray"))
                             .listStyle(PlainListStyle())
                         }
                     } //scrollview
@@ -177,7 +178,7 @@ struct CityView: View {
         let filteredTime = time.replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)
         let intTime = Int(filteredTime) ?? 0
         
-        if (2200 <= intTime && intTime <= 2400) || (0000 <= intTime && intTime <= 0500) {
+        if (2200 <= intTime && intTime <= 2400) || (0000 <= intTime && intTime < 0500) {
             return Color.white
         }
         else {

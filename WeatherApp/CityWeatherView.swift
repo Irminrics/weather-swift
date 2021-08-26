@@ -57,6 +57,6 @@ struct CityWeatherView: View {
 
 struct CityWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        CityWeatherView(city: "Singapore", time: "", temperature: 36.0, color: "midnight1", textColor: Color.white)
+        CityWeatherView(city: "Singapore", time: "", temperature: 36.0, color: "night", textColor: Color.white)
     }
 }

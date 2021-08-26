@@ -32,7 +32,7 @@ struct DetailedCityView: View {
                                     .padding(.leading, 30)
                                 
                             })
-
+                        
                         Spacer()
                         
                         Text(Date().toDayFormat())
@@ -54,7 +54,56 @@ struct DetailedCityView: View {
                     .padding(.bottom, 10)
                     .background(Color("\(bgColor)"))
                 }
+                
+                //icon
+                HStack{
+                    Spacer()
+                    Image("01d")
+                        .renderingMode(.original)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 200, alignment: .leading)
+                        .padding()
+                    Spacer()
+                }
+
+                
+                VStack {
+                    
+                    HStack{
+                        Text("\(Int(round(-36.6)))°")
+                        //.foregroundColor("textColor")
+                            .font(.system(size: 90, weight: .bold))
+                            .foregroundColor(Color.white)
+                        Spacer()
+                    }
+                    
+                    HStack{
+                        Text("Singapore")
+                            .font(Font.custom("Montserrat-Regular", size: 40))
+                            .foregroundColor(Color.white)
+                        Spacer()
+                    }
+                    .padding(.bottom, 1)
+                    
+                    HStack{
+                        Text("Thunder | H:-1 L:-6 | feels like -9")
+                            .font(Font.custom("Montserrat-Regular", size: 20))
+                            .foregroundColor(Color.white)
+                        Spacer()
+                    }
+                }
+                .padding(.top, -20)
+                .padding(.leading, 20)
+                
                 Spacer()
+                
+                ZStack{
+                    Spacer()
+                }
+                .frame(width: 450)
+                .background(Color("lightgray"))
+                
             }
             .padding(.top, 70)
             .navigationBarTitle("")
@@ -62,7 +111,15 @@ struct DetailedCityView: View {
             .background(Color("\(bgColor)"))
             .ignoresSafeArea()
             
+            
+            
         }
         
+    }
+}
+
+struct DetailedCityView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailedCityView(bgColor: "night", fontColor: Color.white)
     }
 }

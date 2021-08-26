@@ -51,7 +51,7 @@ struct StartView: View {
                                 .background(Color.yellow)
                                 .cornerRadius(12)
                                 .padding(.bottom, 100)
-                        }).onAppear{updateWeatherData()}
+                        }).onAppear{deleteAllWeathers();updateWeatherData()}
                 }
             }
         }

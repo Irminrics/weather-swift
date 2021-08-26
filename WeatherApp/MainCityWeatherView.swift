@@ -61,8 +61,9 @@ struct MainCityWeatherView: View {
                     
                     Spacer()
                 }
-                .listRowBackground(Color("lightgray"))
+                
             })
+            .listRowBackground(Color("lightgray"))
         
     }
 }
