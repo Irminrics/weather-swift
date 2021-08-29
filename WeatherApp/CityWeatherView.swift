@@ -12,11 +12,11 @@ struct CityWeatherView: View {
     var temperature: Double
     var color: String
     var textColor: Color
-    
+    var icon: String
     var body: some View {
-//        NavigationLink (
-//            destination: CityView(),
-//            label: {
+        NavigationLink (
+            destination: DetailedCityView(city: city, temperature: temperature, icon: icon, bgColor: color, fontColor: textColor),
+            label: {
                 HStack {
                     Spacer()
                     
@@ -50,13 +50,14 @@ struct CityWeatherView: View {
                     Spacer()
                     
                 }
-                .listRowBackground(Color("lightgray"))
-//            })
+                
+            })
+            .listRowBackground(Color("lightgray"))
     }
 }
 
 struct CityWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        CityWeatherView(city: "Singapore", time: "", temperature: 36.0, color: "night", textColor: Color.white)
+        CityWeatherView(city: "Singapore", time: "", temperature: 36.0, color: "night", textColor: Color.white, icon: "01d")
     }
 }

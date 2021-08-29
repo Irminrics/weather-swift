@@ -14,7 +14,7 @@ struct MainCityWeatherView: View {
     var textColor: Color
     var body: some View {
         NavigationLink (
-            destination: DetailedCityView(bgColor: color, fontColor: Color.white),
+            destination: DetailedCityView(city: city, temperature: temperature, icon: icon, bgColor: color, fontColor: textColor),
             label: {
                 HStack {
                     Spacer()
@@ -66,6 +66,7 @@ struct MainCityWeatherView: View {
             .listRowBackground(Color("lightgray"))
         
     }
+    
 }
 
 struct MainCityWeatherView_Previews: PreviewProvider {

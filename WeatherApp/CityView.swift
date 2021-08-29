@@ -90,7 +90,8 @@ struct CityView: View {
                                                         time: favouritesTime[favIndex],
                                                         temperature: favouritesTemp[favIndex],
                                                         color: convertTimeToColor(time: favouritesTime[favIndex]),
-                                                        textColor: getTextColour(time: favouritesTime[favIndex]))
+                                                        textColor: getTextColour(time: favouritesTime[favIndex]),
+                                                        icon: favouritesIcon[favIndex])
                                             .swipeActions() {
                                                 Button(role: .destructive) {
                                                     deleteWeather(with: favIndex)
