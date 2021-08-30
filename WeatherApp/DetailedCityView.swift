@@ -22,13 +22,11 @@ struct DetailedCityView: View {
                             NavigationLink (
                                 destination: CityView(),
                                 label: {
-                                    Button(action: {}, label: {
-                                        Image(systemName: "chevron.backward")
-                                            .padding(.top, 5)
-                                            .padding(.leading, 9)
-                                            .padding(.trailing, 9)
-                                            .padding(.bottom, 5)
-                                    })
+                                    Image(systemName: "chevron.backward")
+                                        .padding(.top, 5)
+                                        .padding(.leading, 9)
+                                        .padding(.trailing, 9)
+                                        .padding(.bottom, 5)
                                         .foregroundColor(Color.red)
                                         .background(Color.white)
                                         .font(.system(size: 18))
@@ -108,7 +106,7 @@ struct DetailedCityView: View {
                 .navigationBarHidden(true)
                 .background(Color("\(bgColor)"))
                 
-    
+                
                 ZStack {
                     VStack (spacing: 0) {
                         VStack {
@@ -116,56 +114,77 @@ struct DetailedCityView: View {
                                 Spacer()
                             }
                         }
-                        .frame(height: 70)
+                        .frame(height: 65)
                         .background(Color("\(bgColor)"))
                         VStack {
                             HStack{
                                 Spacer()
                             }
                         }
-                        .frame(height: 70)
+                        .frame(height: 65)
                     }
                     
-                    HStack (spacing: 15) {
-                        VStack {
-                            
+                    ScrollView (.horizontal, showsIndicators: false) {
+                        HStack (spacing: 18.5) {
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            VStack {
+                                
+                            }
+                            .frame(width: 60, height: 110, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(10)
                         }
-                        .frame(width: 60, height: 120, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        VStack {
-                            
-                        }
-                        .frame(width: 60, height: 120, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        VStack {
-                            
-                        }
-                        .frame(width: 60, height: 120, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        VStack {
-                            
-                        }
-                        .frame(width: 60, height: 120, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(10)
-                        VStack {
-                            
-                        }
-                        .frame(width: 60, height: 120, alignment: .center)
-                        .background(Color.white)
-                        .cornerRadius(10)
                     }
+                    .frame(width: UIScreen.main.bounds.width-50, alignment: .center)
+                    
                 }
                 
-                VStack {
-                    HStack{
-                        Spacer()
-                    }
+                
+                
+                
+                HStack {
+                    Spacer()
                 }
-                .frame(height: 1000)
+                .frame(width: UIScreen.main.bounds.width-50,height: UIScreen.main.bounds.height-700, alignment: .center)
+                .background(Color.white)
+                .cornerRadius(10)
+                
+                
             }
             
             
@@ -176,8 +195,8 @@ struct DetailedCityView: View {
     }
 }
 
-//struct DetailedCityView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailedCityView(bgColor: "night", fontColor: Color.white)
-//    }
-//}
+struct DetailedCityView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailedCityView(city: "Singapore", temperature: 16.7, icon: "01d", bgColor: "night", fontColor: Color.white)
+    }
+}
