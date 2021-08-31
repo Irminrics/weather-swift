@@ -125,7 +125,7 @@ struct DetailedCityView: View {
                     }
                     
                     ScrollView (.horizontal, showsIndicators: false) {
-                        HStack (spacing: 18.5) {
+                        HStack (spacing: 15.5) {
                             VStack {
                                 
                             }
@@ -185,7 +185,69 @@ struct DetailedCityView: View {
                 .cornerRadius(10)
                 
                 
+                HStack {
+                    Spacer()
+                    VStack {
+                        Text("Today")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .font(Font.custom("Montserrat-Bold", size: 22))
+                            .padding(.leading, 10)
+                            .padding(.top, 10)
+                            .padding(.bottom, 20)
+                        
+                        VStack {
+                            
+                            HStack {
+                                VStack {
+                                    Text("Sunrise")
+                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Text("06:52")
+                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                
+                                Spacer()
+                                VStack {
+                                    Text("Noon")
+                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                    Text("13:29")
+                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                }
+                                Spacer()
+                                VStack {
+                                    Text("Sunset")
+                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                    Text("17:27")
+                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                            }
+                            .padding(.leading, 10)
+                            .padding(.trailing, 15)
+                            
+                            Image("sunline")
+                                .renderingMode(.original)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .offset(y: -15)
+                                .padding(.leading, 10)
+                                .padding(.trailing, 15)
+                        }
+                        
+                        
+                        Spacer()
+                    }
+                }
+                .frame(width: UIScreen.main.bounds.width-50, height: UIScreen.main.bounds.height-500)
+                .background(Color.white)
+                .cornerRadius(10)
+                .padding(.top, 10)
+                .padding(.bottom, 30)
+                
             }
+            
             
             
         }
