@@ -266,7 +266,168 @@ struct DetailedCityView: View {
                 
                 
                 HStack {
-                    Spacer()
+                    ScrollView {
+                        VStack (spacing: 0) {
+                            HStack {
+                                Text("Saturday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+                                
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            
+                            HStack {
+                                Text("Sunday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                    
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            HStack {
+                                Text("Monday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                    
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            HStack {
+                                Text("Tuesday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                    
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            HStack {
+                                Text("Wednesday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                    
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            HStack {
+                                Text("Thursday")
+                                    .frame(width: 110, alignment: .leading)
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                    
+                                
+                                Spacer()
+                                
+                                Image("\(icon)")
+                                    .renderingMode(.original)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 35, height: 35, alignment: .leading)
+
+                                Spacer()
+                                
+                                Text("-6º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                                
+                                Spacer()
+                                
+                                Text("-1º")
+                                    .font(Font.custom("Montserrat-Regular", size: 18))
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                        }
+                        .padding(.top, 15)
+                        .padding(.bottom, 15)
+                    }
                 }
                 .frame(width: UIScreen.main.bounds.width-50,height: UIScreen.main.bounds.height-700, alignment: .center)
                 .background(Color.white)
