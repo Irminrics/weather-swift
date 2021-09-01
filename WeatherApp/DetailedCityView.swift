@@ -266,7 +266,7 @@ struct DetailedCityView: View {
                 
                 
                 HStack {
-                    ScrollView {
+                    ScrollView (showsIndicators: false) {
                         VStack (spacing: 0) {
                             HStack {
                                 Text("Saturday")
@@ -488,23 +488,50 @@ struct DetailedCityView: View {
                                 VStack {
                                     Text("Snow")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Spacer()
+                                    Image("snow")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                    Spacer()
+                                    Text("10%")
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
+                                    Spacer()
                                 }
                                 Spacer()
                                 VStack {
                                     Text("Humidity")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
-                                        .frame(maxWidth: .infinity, alignment: .center)
+                                    Spacer()
+                                    Image("humidity")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                    Spacer()
+                                    Text("62%")
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
+                                    Spacer()
                                 }
                                 Spacer()
                                 VStack {
                                     Text("Wind")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                    Spacer()
+                                    Image("wind")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 50, height: 50, alignment: .center)
+                                    Spacer()
+                                    Text("5m/s")
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
+                                    Spacer()
                                 }
                             }
-                            .padding(.leading, 25)
-                            .padding(.trailing, 30)
+                            .padding(.leading, 35)
+                            .padding(.trailing, 40)
                             
                             
                             
@@ -514,7 +541,7 @@ struct DetailedCityView: View {
                         Spacer()
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width-50, height: UIScreen.main.bounds.height-500)
+                .frame(width: UIScreen.main.bounds.width-50, height: UIScreen.main.bounds.height-550)
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.top, 10)
