@@ -127,43 +127,131 @@ struct DetailedCityView: View {
                     ScrollView (.horizontal, showsIndicators: false) {
                         HStack (spacing: 15.5) {
                             VStack {
-                                
+                                ZStack {
+                                    Image("\(icon)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 35, height: 35, alignment: .leading)
+                                        .padding()
+                                    
+                                    VStack {
+                                        Text("Now")
+                                            .font(Font.custom("Montserrat-Bold", size: 18))
+                                            .padding(.top, 10)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Text("-6º")
+                                            .font(Font.custom("Montserrat-Bold", size: 18))
+                                            .padding(.bottom, 10)
+                                    }
+                                }
                             }
                             .frame(width: 60, height: 110, alignment: .center)
                             .background(Color.white)
                             .cornerRadius(10)
                             VStack {
-                                
+                                ZStack {
+                                    Image("\(icon)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 35, height: 35, alignment: .leading)
+                                        .padding()
+                                    
+                                    VStack {
+                                        Text("08")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.top, 10)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Text("-6º")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.bottom, 10)
+                                    }
+                                }
                             }
                             .frame(width: 60, height: 110, alignment: .center)
                             .background(Color.white)
                             .cornerRadius(10)
                             VStack {
-                                
+                                ZStack {
+                                    Image("\(icon)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 35, height: 35, alignment: .leading)
+                                        .padding()
+                                    
+                                    VStack {
+                                        Text("09")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.top, 10)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Text("-6º")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.bottom, 10)
+                                    }
+                                }
                             }
                             .frame(width: 60, height: 110, alignment: .center)
                             .background(Color.white)
                             .cornerRadius(10)
                             VStack {
-                                
+                                ZStack {
+                                    Image("\(icon)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 35, height: 35, alignment: .leading)
+                                        .padding()
+                                    
+                                    VStack {
+                                        Text("10")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.top, 10)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Text("-6º")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.bottom, 10)
+                                    }
+                                }
                             }
                             .frame(width: 60, height: 110, alignment: .center)
                             .background(Color.white)
                             .cornerRadius(10)
                             VStack {
-                                
-                            }
-                            .frame(width: 60, height: 110, alignment: .center)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            VStack {
-                                
-                            }
-                            .frame(width: 60, height: 110, alignment: .center)
-                            .background(Color.white)
-                            .cornerRadius(10)
-                            VStack {
-                                
+                                ZStack {
+                                    Image("\(icon)")
+                                        .renderingMode(.original)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 35, height: 35, alignment: .leading)
+                                        .padding()
+                                    
+                                    VStack {
+                                        Text("11")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.top, 10)
+                                        
+                                        Spacer()
+                                        
+                                        
+                                        Text("-6º")
+                                            .font(Font.custom("Montserrat-Regular", size: 18))
+                                            .padding(.bottom, 10)
+                                    }
+                                }
                             }
                             .frame(width: 60, height: 110, alignment: .center)
                             .background(Color.white)
@@ -190,7 +278,7 @@ struct DetailedCityView: View {
                     VStack {
                         Text("Today")
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(Font.custom("Montserrat-Bold", size: 22))
+                            .font(Font.custom("Montserrat-Bold", size: 20))
                             .padding(.leading, 10)
                             .padding(.top, 10)
                             .padding(.bottom, 20)
@@ -200,27 +288,27 @@ struct DetailedCityView: View {
                             HStack {
                                 VStack {
                                     Text("Sunrise")
-                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                     Text("06:52")
-                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                                 
                                 Spacer()
                                 VStack {
                                     Text("Noon")
-                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
                                     Text("13:29")
-                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
                                 }
                                 Spacer()
                                 VStack {
                                     Text("Sunset")
-                                        .font(Font.custom("Montserrat-Regular", size: 20))
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                     Text("17:27")
-                                        .font(Font.custom("Montserrat-Bold", size: 20))
+                                        .font(Font.custom("Montserrat-Bold", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
                             }
@@ -232,8 +320,33 @@ struct DetailedCityView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .offset(y: -15)
-                                .padding(.leading, 10)
-                                .padding(.trailing, 15)
+                                .padding(.leading, 2)
+                                .padding(.trailing, 8)
+                            
+                            HStack {
+                                VStack {
+                                    Text("Snow")
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                Spacer()
+                                VStack {
+                                    Text("Humidity")
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
+                                        .frame(maxWidth: .infinity, alignment: .center)
+                                }
+                                Spacer()
+                                VStack {
+                                    Text("Wind")
+                                        .font(Font.custom("Montserrat-Regular", size: 18))
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                }
+                            }
+                            .padding(.leading, 25)
+                            .padding(.trailing, 30)
+                            
+                            
+                            
                         }
                         
                         
