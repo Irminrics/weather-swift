@@ -13,6 +13,11 @@ struct DetailedCityView: View {
     var icon: String
     var bgColor: String
     var fontColor: Color
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    @State var mainWeather = ""
+    @State var feelsLike = 0.0
+    @State var tempMax = 0.0
+    @State var tempMin = 0.0
     var body: some View {
         ZStack{
             ScrollView {
@@ -89,7 +94,7 @@ struct DetailedCityView: View {
                         .padding(.bottom, 1)
                         
                         HStack{
-                            Text("Thunder | H:-1 L:-6 | feels like -9")
+                            Text("\(mainWeather) | H: \(Int(round(tempMax))) L: \(Int(round(tempMin))) | feels like \(Int(round(feelsLike)))")
                                 .font(Font.custom("Montserrat-Regular", size: 20))
                                 .foregroundColor(fontColor)
                             Spacer()
@@ -298,7 +303,7 @@ struct DetailedCityView: View {
                                 Text("Sunday")
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
-                                    
+                                
                                 
                                 Spacer()
                                 
@@ -307,7 +312,7 @@ struct DetailedCityView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35, alignment: .leading)
-
+                                
                                 Spacer()
                                 
                                 Text("-6º")
@@ -324,7 +329,7 @@ struct DetailedCityView: View {
                                 Text("Monday")
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
-                                    
+                                
                                 
                                 Spacer()
                                 
@@ -333,7 +338,7 @@ struct DetailedCityView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35, alignment: .leading)
-
+                                
                                 Spacer()
                                 
                                 Text("-6º")
@@ -350,7 +355,7 @@ struct DetailedCityView: View {
                                 Text("Tuesday")
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
-                                    
+                                
                                 
                                 Spacer()
                                 
@@ -359,7 +364,7 @@ struct DetailedCityView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35, alignment: .leading)
-
+                                
                                 Spacer()
                                 
                                 Text("-6º")
@@ -376,7 +381,7 @@ struct DetailedCityView: View {
                                 Text("Wednesday")
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
-                                    
+                                
                                 
                                 Spacer()
                                 
@@ -385,7 +390,7 @@ struct DetailedCityView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35, alignment: .leading)
-
+                                
                                 Spacer()
                                 
                                 Text("-6º")
@@ -402,7 +407,7 @@ struct DetailedCityView: View {
                                 Text("Thursday")
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
-                                    
+                                
                                 
                                 Spacer()
                                 
@@ -411,7 +416,7 @@ struct DetailedCityView: View {
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                     .frame(width: 35, height: 35, alignment: .leading)
-
+                                
                                 Spacer()
                                 
                                 Text("-6º")
@@ -554,8 +559,42 @@ struct DetailedCityView: View {
         }
         .background(Color("lightgray"))
         .ignoresSafeArea()
+        .onAppear{updateWeatherData()}
+        .onReceive(timer) { time in
+            updateWeatherData()
+        }
         
     }
+    
+    
+    func updateWeatherData() {
+        let filteredCity = city.replacingOccurrences(of: " ", with: "%20")
+        //convert string url to swift url
+        let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(filteredCity)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
+        let url = URL(string: urlString)
+        
+        //use to connect to api; either get data, response or error
+        //use _ if u do not need it
+        URLSession.shared.dataTask(with: url!) {data, _, error in
+            //telling the machine this is an async operation so might have to wait
+            DispatchQueue.main.async {
+                //if we get an actual data
+                if let data = data {
+                    do {
+                        let decoder = JSONDecoder()
+                        let decodedData = try decoder.decode(WeatherData.self, from: data)
+                        feelsLike = decodedData.main.feels_like
+                        tempMax = decodedData.main.temp_max
+                        tempMin = decodedData.main.temp_min
+                        mainWeather = decodedData.weather[0].mainWeather
+                    } catch {
+                        print("Error! Something went wrong.")
+                    }
+                }
+            }
+        }.resume()
+    }
+    
 }
 
 struct DetailedCityView_Previews: PreviewProvider {
