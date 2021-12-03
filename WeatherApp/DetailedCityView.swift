@@ -13,6 +13,7 @@ struct DetailedCityView: View {
     var icon: String
     var bgColor: String
     var fontColor: Color
+    var time: Date
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     @State var mainWeather = ""
     @State var feelsLike = 0.0
@@ -42,7 +43,7 @@ struct DetailedCityView: View {
                             
                             Spacer()
                             
-                            Text(Date().toDayFormat())
+                            Text(time.toDayFormat())
                                 .font(Font.custom("Montserrat-Regular", size: 20))
                                 .foregroundColor(fontColor)
                             
@@ -167,7 +168,7 @@ struct DetailedCityView: View {
                                         .padding()
                                     
                                     VStack {
-                                        Text(Calendar.current.date(byAdding: .day, value: 1, to: Date())!.toDayNumberFormat())
+                                        Text(Calendar.current.date(byAdding: .day, value: 1, to: time)!.toDayNumberFormat())
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.top, 10)
                                         
@@ -193,7 +194,7 @@ struct DetailedCityView: View {
                                         .padding()
                                     
                                     VStack {
-                                        Text(Calendar.current.date(byAdding: .day, value: 2, to: Date())!.toDayNumberFormat())
+                                        Text(Calendar.current.date(byAdding: .day, value: 2, to: time)!.toDayNumberFormat())
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.top, 10)
                                         
@@ -219,7 +220,7 @@ struct DetailedCityView: View {
                                         .padding()
                                     
                                     VStack {
-                                        Text(Calendar.current.date(byAdding: .day, value: 3, to: Date())!.toDayNumberFormat())
+                                        Text(Calendar.current.date(byAdding: .day, value: 3, to: time)!.toDayNumberFormat())
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.top, 10)
                                         
@@ -245,7 +246,7 @@ struct DetailedCityView: View {
                                         .padding()
                                     
                                     VStack {
-                                        Text(Calendar.current.date(byAdding: .day, value: 4, to: Date())!.toDayNumberFormat())
+                                        Text(Calendar.current.date(byAdding: .day, value: 4, to: time)!.toDayNumberFormat())
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.top, 10)
                                         
@@ -274,7 +275,7 @@ struct DetailedCityView: View {
                     ScrollView (showsIndicators: false) {
                         VStack (spacing: 0) {
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 1, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 1, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -300,7 +301,7 @@ struct DetailedCityView: View {
                             .padding(.trailing, 20)
                             
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 2, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 2, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -326,7 +327,7 @@ struct DetailedCityView: View {
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 3, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 3, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -352,7 +353,7 @@ struct DetailedCityView: View {
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 4, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 4, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -378,7 +379,7 @@ struct DetailedCityView: View {
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 5, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 5, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -404,7 +405,7 @@ struct DetailedCityView: View {
                             .padding(.leading, 20)
                             .padding(.trailing, 20)
                             HStack {
-                                Text(Calendar.current.date(byAdding: .day, value: 6, to: Date())!.toDayNameFormat())
+                                Text(Calendar.current.date(byAdding: .day, value: 6, to: time)!.toDayNameFormat())
                                     .frame(width: 110, alignment: .leading)
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
@@ -599,6 +600,6 @@ struct DetailedCityView: View {
 
 struct DetailedCityView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedCityView(city: "Singapore", temperature: 16.7, icon: "01d", bgColor: "night", fontColor: Color.white)
+        DetailedCityView(city: "Singapore", temperature: 16.7, icon: "01d", bgColor: "night", fontColor: Color.white, time: Date())
     }
 }

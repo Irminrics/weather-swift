@@ -8,13 +8,14 @@ import SwiftUI
 
 struct MainCityWeatherView: View {
     var city: String
+    var date: Date
     var temperature: Double
     var icon: String
     var color: String
     var textColor: Color
     var body: some View {
         NavigationLink (
-            destination: DetailedCityView(city: city, temperature: temperature, icon: icon, bgColor: color, fontColor: textColor),
+            destination: DetailedCityView(city: city, temperature: temperature, icon: icon, bgColor: color, fontColor: textColor, time: date),
             label: {
                 HStack {
                     Spacer()
@@ -71,6 +72,6 @@ struct MainCityWeatherView: View {
 
 struct MainCityWeatherView_Previews: PreviewProvider {
     static var previews: some View {
-        MainCityWeatherView(city: "Singapore", temperature: 39.0, icon: "01d", color: "night", textColor: Color.white)
+        MainCityWeatherView(city: "Singapore", date: Date(), temperature: 39.0, icon: "01d", color: "night", textColor: Color.white)
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CityView: View {
     @AppStorage("favouritesCity") var favouritesCity: [String] = []
     @AppStorage("favouritesTime") var favouritesTime: [String] = []
+    @AppStorage("favouritesDate") var favouritesDate: [Date] = []
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
     @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
@@ -69,7 +70,9 @@ struct CityView: View {
                                 if(favouritesCity.count > 0) {
                                     ForEach((0..<1), id: \.self) { favIndex in
                                         MainCityWeatherView(city: favouritesCity[favIndex],
+                                                            date: favouritesDate[favIndex],
                                                             temperature: favouritesTemp[favIndex],
+                                                            
                                                             icon: favouritesIcon[favIndex],
                                                             color: convertTimeToColor(time: favouritesTime[favIndex]),
                                                             textColor: getTextColour(time: favouritesTime[favIndex]))
@@ -87,7 +90,7 @@ struct CityView: View {
                                 if(favouritesCity.count > 1) {
                                     ForEach((1..<favouritesCity.count), id: \.self) { favIndex in
                                         CityWeatherView(city: favouritesCity[favIndex],
-                                                        time: favouritesTime[favIndex],
+                                                        date: favouritesDate[favIndex],
                                                         temperature: favouritesTemp[favIndex],
                                                         color: convertTimeToColor(time: favouritesTime[favIndex]),
                                                         textColor: getTextColour(time: favouritesTime[favIndex]),
@@ -163,6 +166,7 @@ struct CityView: View {
                             let decodedData = try decoder.decode(WeatherData.self, from: data)
                             self.favouritesCity[index] = decodedData.name
                             self.favouritesTime[index] = Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone).toTimeFormat()
+                            self.favouritesDate[index] = Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone)
                             self.favouritesTemp[index] = decodedData.main.temp
                             self.favouritesMainWeather[index] = decodedData.weather[0].mainWeather
                             self.favouritesIcon[index] = decodedData.weather[0].icon
@@ -192,6 +196,7 @@ struct CityView: View {
     func makeMainWeather(with index: Int) {
         favouritesCity.swapAt(0, index)
         favouritesTime.swapAt(0, index)
+        favouritesDate.swapAt(0, index)
         favouritesTemp.swapAt(0, index)
         favouritesMainWeather.swapAt(0, index)
         favouritesIcon.swapAt(0, index)
@@ -200,6 +205,7 @@ struct CityView: View {
     func deleteWeather(with index: Int) {
         favouritesCity.remove(at: index)
         favouritesTime.remove(at: index)
+        favouritesDate.remove(at: index)
         favouritesTemp.remove(at: index)
         favouritesMainWeather.remove(at: index)
         favouritesIcon.remove(at: index)
@@ -209,6 +215,7 @@ struct CityView: View {
     func deleteAllWeathers() {
         favouritesCity.removeAll()
         favouritesTime.removeAll()
+        favouritesDate.removeAll()
         favouritesTemp.removeAll()
         favouritesMainWeather.removeAll()
         favouritesIcon.removeAll()

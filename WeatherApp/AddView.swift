@@ -10,6 +10,7 @@ import SwiftUI
 struct SheetView: View {
     @AppStorage("favouritesCity") var favouritesCity: [String] = []
     @AppStorage("favouritesTime") var favouritesTime: [String] = []
+    @AppStorage("favouritesDate") var favouritesDate: [Date] = []
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
     @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
@@ -157,6 +158,7 @@ struct SheetView: View {
                         let decodedData = try decoder.decode(WeatherData.self, from: data)
                         self.favouritesCity.append(decodedData.name)
                         self.favouritesTime.append(Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone).toTimeFormat())
+                        self.favouritesDate.append(Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone))
                         self.favouritesTemp.append(decodedData.main.temp)
                         self.favouritesMainWeather.append(decodedData.weather[0].mainWeather)
                         self.favouritesIcon.append(decodedData.weather[0].icon)

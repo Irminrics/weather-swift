@@ -10,6 +10,7 @@ import SwiftUI
 struct StartView: View {
     @AppStorage("favouritesCity") var favouritesCity: [String] = []
     @AppStorage("favouritesTime") var favouritesTime: [String] = []
+    @AppStorage("favouritesDate") var favouritesDate: [Date] = []
     @AppStorage("favouritesTemp") var favouritesTemp: [Double] = []
     @AppStorage("favouritesMainWeather") var favouritesMainWeather: [String] = []
     @AppStorage("favouritesIcon") var favouritesIcon: [String] = []
@@ -60,6 +61,7 @@ struct StartView: View {
     func deleteAllWeathers() {
         favouritesCity.removeAll()
         favouritesTime.removeAll()
+        favouritesDate.removeAll()
         favouritesTemp.removeAll()
         favouritesMainWeather.removeAll()
         favouritesIcon.removeAll()
