@@ -34,7 +34,7 @@ I would like to acknowledge the following resources which helped me in the devel
 All custom code belongs to myself.
 
 - WeatherAPI: [OpenWeatherAPI](https://openweathermap.org)
-- Design: [Nikolay Mezin](https://www.behance.net/nmiezin)
+- Design: [Weather-App](https://www.behance.net/gallery/114764141/Weather-App) by [Nikolay Mezin](https://www.behance.net/nmiezin)
 
 
 ## Author & License
