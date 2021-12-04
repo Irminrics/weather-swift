@@ -28,10 +28,6 @@ Weather-SwiftUI is an app that is built using SwiftUI! Check the weather for you
 2. This project is still a work in progress so there might be bugs that are still pending to be fixed.
 3. The free API key used in this project only supports up to 60 calls/minute and 1,000,000 calls/month. Due to this limitation, I have tuned down the refresh call rate so as to ensure we do not exceed the maximum calls we have.
 
-
-<div style="width: 1000px; height 600px;"><img src="" width="28%" height="28%" align="left"></div>
-
-
 ## Acknowledgements
 
 I would like to acknowledge the following resources which helped me in the development of this project.
