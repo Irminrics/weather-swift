@@ -19,6 +19,10 @@ struct DetailedCityView: View {
     @State var feelsLike = 0.0
     @State var tempMax = 0.0
     @State var tempMin = 0.0
+    @State var lat: Double = 0.0
+    @State var lon: Double = 0.0
+    @State var tempMaxForecast: [Double] = [0, 0, 0, 0, 0, 0]
+    @State var tempMinForecast: [Double] = [0, 0, 0, 0, 0, 0]
     var body: some View {
         ZStack{
             ScrollView {
@@ -175,7 +179,7 @@ struct DetailedCityView: View {
                                         Spacer()
                                         
                                         
-                                        Text("-6º")
+                                        Text("\(Int(round((tempMinForecast[0] + tempMaxForecast[0])/2)))°")
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.bottom, 10)
                                     }
@@ -201,7 +205,7 @@ struct DetailedCityView: View {
                                         Spacer()
                                         
                                         
-                                        Text("-6º")
+                                        Text("\(Int(round((tempMinForecast[1] + tempMaxForecast[1])/2)))°")
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.bottom, 10)
                                     }
@@ -227,7 +231,7 @@ struct DetailedCityView: View {
                                         Spacer()
                                         
                                         
-                                        Text("-6º")
+                                        Text("\(Int(round((tempMinForecast[2] + tempMaxForecast[2])/2)))°")
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.bottom, 10)
                                     }
@@ -253,7 +257,7 @@ struct DetailedCityView: View {
                                         Spacer()
                                         
                                         
-                                        Text("-6º")
+                                        Text("\(Int(round((tempMinForecast[3] + tempMaxForecast[3])/2)))°")
                                             .font(Font.custom("Montserrat-Regular", size: 18))
                                             .padding(.bottom, 10)
                                     }
@@ -289,12 +293,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[0])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMaxForecast[0])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -316,12 +320,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[1])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMinForecast[1])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -342,12 +346,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[2])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMaxForecast[2])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -368,12 +372,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[3])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMaxForecast[3])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -394,12 +398,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[4])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMaxForecast[4])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -420,12 +424,12 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Text("-6º")
+                                Text("\(Int(round(tempMinForecast[5])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                                 
                                 Spacer()
                                 
-                                Text("-1º")
+                                Text("\(Int(round(tempMaxForecast[5])))°")
                                     .font(Font.custom("Montserrat-Regular", size: 18))
                             }
                             .padding(.leading, 20)
@@ -560,9 +564,10 @@ struct DetailedCityView: View {
         }
         .background(Color("lightgray"))
         .ignoresSafeArea()
-        .onAppear{updateWeatherData()}
+        .onAppear{updateWeatherData(); updateWeatherForecastData()}
         .onReceive(timer) { time in
             updateWeatherData()
+            updateWeatherForecastData()
         }
         
     }
@@ -588,6 +593,40 @@ struct DetailedCityView: View {
                         tempMax = decodedData.main.temp_max
                         tempMin = decodedData.main.temp_min
                         mainWeather = decodedData.weather[0].mainWeather
+                        lon = decodedData.coord.lon
+                        lat = decodedData.coord.lat
+                    } catch {
+                        print("Error! Something went wrong.")
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func updateWeatherForecastData() {
+        //convert string url to swift url
+        let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=b4656ed1180f72efa00dbb397a127ef8"
+        let url = URL(string: urlString)
+        
+        print(lat)
+        print(lon)
+        
+        //use to connect to api; either get data, response or error
+        //use _ if u do not need it
+        URLSession.shared.dataTask(with: url!) {data, _, error in
+            //telling the machine this is an async operation so might have to wait
+            DispatchQueue.main.async {
+                //if we get an actual data
+                if let data = data {
+                    do {
+                        let count = 0...5
+                        let decoder = JSONDecoder()
+                        let decodedData = try decoder.decode(ForecastData.self, from: data)
+                        for i in count {
+                            tempMaxForecast[i] = decodedData.daily[i].temp.max
+                            tempMinForecast[i] = decodedData.daily[i].temp.min
+                            //mainWeather = decodedData.weather[0].mainWeather
+                        }
                     } catch {
                         print("Error! Something went wrong.")
                     }
