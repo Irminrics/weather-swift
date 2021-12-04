@@ -23,6 +23,7 @@ struct DetailedCityView: View {
     @State var lon: Double = 0.0
     @State var tempMaxForecast: [Double] = [0, 0, 0, 0, 0, 0]
     @State var tempMinForecast: [Double] = [0, 0, 0, 0, 0, 0]
+    @State var weatherForecast: [String] = ["", "", "", "", "", ""]
     var body: some View {
         ZStack{
             ScrollView {
@@ -62,6 +63,7 @@ struct DetailedCityView: View {
                                 .font(.system(size: 18))
                                 .cornerRadius(12)
                                 .padding(.trailing, 30)
+                                .hidden()
                         }
                         .padding(.bottom, 10)
                         .background(Color("\(bgColor)"))
@@ -164,7 +166,7 @@ struct DetailedCityView: View {
                             .cornerRadius(10)
                             VStack {
                                 ZStack {
-                                    Image("\(icon)")
+                                    Image("\(weatherForecast[0])")
                                         .renderingMode(.original)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -190,7 +192,7 @@ struct DetailedCityView: View {
                             .cornerRadius(10)
                             VStack {
                                 ZStack {
-                                    Image("\(icon)")
+                                    Image("\(weatherForecast[1])")
                                         .renderingMode(.original)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -216,7 +218,7 @@ struct DetailedCityView: View {
                             .cornerRadius(10)
                             VStack {
                                 ZStack {
-                                    Image("\(icon)")
+                                    Image("\(weatherForecast[2])")
                                         .renderingMode(.original)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -242,7 +244,7 @@ struct DetailedCityView: View {
                             .cornerRadius(10)
                             VStack {
                                 ZStack {
-                                    Image("\(icon)")
+                                    Image("\(weatherForecast[3])")
                                         .renderingMode(.original)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
@@ -285,7 +287,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[0])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -312,7 +314,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[1])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -338,7 +340,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[2])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -364,7 +366,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[3])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -390,7 +392,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[4])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -416,7 +418,7 @@ struct DetailedCityView: View {
                                 
                                 Spacer()
                                 
-                                Image("\(icon)")
+                                Image("\(weatherForecast[5])")
                                     .renderingMode(.original)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
@@ -564,10 +566,9 @@ struct DetailedCityView: View {
         }
         .background(Color("lightgray"))
         .ignoresSafeArea()
-        .onAppear{updateWeatherData(); updateWeatherForecastData()}
+        .onAppear{updateWeatherData()}
         .onReceive(timer) { time in
             updateWeatherData()
-            updateWeatherForecastData()
         }
         
     }
@@ -595,6 +596,7 @@ struct DetailedCityView: View {
                         mainWeather = decodedData.weather[0].mainWeather
                         lon = decodedData.coord.lon
                         lat = decodedData.coord.lat
+                        updateWeatherForecastData()
                     } catch {
                         print("Error! Something went wrong.")
                     }
@@ -607,10 +609,7 @@ struct DetailedCityView: View {
         //convert string url to swift url
         let urlString = "https://api.openweathermap.org/data/2.5/onecall?lat=\(lat)&lon=\(lon)&units=metric&appid=b4656ed1180f72efa00dbb397a127ef8"
         let url = URL(string: urlString)
-        
-        print(lat)
-        print(lon)
-        
+
         //use to connect to api; either get data, response or error
         //use _ if u do not need it
         URLSession.shared.dataTask(with: url!) {data, _, error in
@@ -625,7 +624,7 @@ struct DetailedCityView: View {
                         for i in count {
                             tempMaxForecast[i] = decodedData.daily[i].temp.max
                             tempMinForecast[i] = decodedData.daily[i].temp.min
-                            //mainWeather = decodedData.weather[0].mainWeather
+                            weatherForecast[i] = decodedData.daily[i].weather[0].icon
                         }
                     } catch {
                         print("Error! Something went wrong.")

@@ -13,7 +13,7 @@ struct ForecastData: Decodable {
 
 struct WeatherForecastData: Decodable {
     var temp: TempData
-    var weather: [CurrentWeatherData]
+    var weather: [ForecastWeatherData]
 
 }
 
@@ -22,5 +22,16 @@ struct TempData: Decodable {
     var max: Double
 }
 
+struct ForecastWeatherData: Decodable, Hashable  {
+    var mainWeather: String
+    var description: String
+    var icon: String
+    
+    enum CodingKeys: String, CodingKey {
+        case mainWeather = "main"
+        case description
+        case icon
+    }
+}
 
 

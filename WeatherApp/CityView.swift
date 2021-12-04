@@ -179,6 +179,40 @@ struct CityView: View {
         }
     }
     
+    func refreshWeatherData() {
+        
+        for (index,city) in favouritesCity.enumerated() {
+            let filteredCity = city.replacingOccurrences(of: " ", with: "%20")
+            //convert string url to swift url
+            let urlString = "http://api.openweathermap.org/data/2.5/weather?q=\(filteredCity)&appid=b4656ed1180f72efa00dbb397a127ef8&units=metric"
+            let url = URL(string: urlString)
+            
+            //use to connect to api; either get data, response or error
+            //use _ if u do not need it
+            URLSession.shared.dataTask(with: url!) {data, _, error in
+                //telling the machine this is an async operation so might have to wait
+                DispatchQueue.main.async {
+                    //if we get an actual data
+                    if let data = data {
+                        do {
+                            let decoder = JSONDecoder()
+                            let decodedData = try decoder.decode(WeatherData.self, from: data)
+                            self.favouritesCity[index] = decodedData.name
+                            self.favouritesTime[index] = Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone).toTimeFormat()
+                            self.favouritesDate[index] = Date().toGlobalTime().toLocalTime(secondsFromGMT: decodedData.timezone)
+                            self.favouritesTemp[index] = decodedData.main.temp
+                            self.favouritesMainWeather[index] = decodedData.weather[0].mainWeather
+                            self.favouritesIcon[index] = decodedData.weather[0].icon
+                        } catch {
+                            print("Error! Something went wrong.")
+                        }
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    
     func getTextColour(time: String) -> Color {
         let filteredTime = time.replacingOccurrences(of: ":", with: "", options: NSString.CompareOptions.literal, range: nil)
         let intTime = Int(filteredTime) ?? 0
