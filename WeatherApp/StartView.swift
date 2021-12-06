@@ -18,6 +18,10 @@ struct StartView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                
+                Color("skyblue")
+                    .ignoresSafeArea()
+                
                 VStack {
                     Spacer()
                     
@@ -55,6 +59,7 @@ struct StartView: View {
                         }).onAppear{updateWeatherData()}
                 }
             }
+            
         }
     }
     

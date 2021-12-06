@@ -10,7 +10,6 @@
 		2101390826BA6B4300110060 /* WeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101390726BA6B4300110060 /* WeatherApp.swift */; };
 		2101390A26BA6B4300110060 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101390926BA6B4300110060 /* StartView.swift */; };
 		2101390F26BA6B4400110060 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2101390E26BA6B4400110060 /* Preview Assets.xcassets */; };
-		2101391726BA6D6B00110060 /* weather-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 2101391626BA6D6B00110060 /* weather-icon.png */; };
 		2101391926BA855800110060 /* CityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391826BA855800110060 /* CityView.swift */; };
 		2101391D26BAF8D100110060 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101391C26BAF8D100110060 /* WeatherData.swift */; };
 		212E1E06275B32B900922C86 /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E1E05275B32B900922C86 /* ForecastData.swift */; };
@@ -50,7 +49,6 @@
 		2101390B26BA6B4400110060 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2101390E26BA6B4400110060 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2101391026BA6B4400110060 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2101391626BA6D6B00110060 /* weather-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weather-icon.png"; sourceTree = "<group>"; };
 		2101391826BA855800110060 /* CityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityView.swift; sourceTree = "<group>"; };
 		2101391C26BAF8D100110060 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		212E1E05275B32B900922C86 /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				2171B7C326D28F8E00858B9E /* Montserrat */,
-				2101391626BA6D6B00110060 /* weather-icon.png */,
 				2101390726BA6B4300110060 /* WeatherApp.swift */,
 				2101390926BA6B4300110060 /* StartView.swift */,
 				2101391826BA855800110060 /* CityView.swift */,
@@ -242,7 +239,6 @@
 				2171B7E726D28F8E00858B9E /* Montserrat-Italic.ttf in Resources */,
 				2171B7DE26D28F8E00858B9E /* Montserrat-Bold.ttf in Resources */,
 				2171B7DF26D28F8E00858B9E /* Montserrat-MediumItalic.ttf in Resources */,
-				2101391726BA6D6B00110060 /* weather-icon.png in Resources */,
 				2171B7E526D28F8E00858B9E /* Montserrat-Black.ttf in Resources */,
 				2171B7E926D28F8E00858B9E /* Montserrat-ExtraBoldItalic.ttf in Resources */,
 			);
@@ -395,6 +391,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 3S22TUWT2S;
@@ -417,6 +414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"WeatherApp/Preview Content\"";
 				DEVELOPMENT_TEAM = 3S22TUWT2S;
