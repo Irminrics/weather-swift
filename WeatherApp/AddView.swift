@@ -25,8 +25,6 @@ struct SheetView: View {
             Color("lightgray")
                 .ignoresSafeArea()
             VStack{
-                
-                
                 VStack {
                     HStack {
                         Button(action: {}, label: {
@@ -37,6 +35,7 @@ struct SheetView: View {
                             .font(.system(size: 18))
                             .cornerRadius(12)
                             .padding(.leading, 30)
+                            .hidden()
                         
                         Spacer()
                         

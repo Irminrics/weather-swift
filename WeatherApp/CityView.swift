@@ -28,15 +28,24 @@ struct CityView: View {
                 
                 VStack {
                     HStack {
-                        Button(action: {}, label: {
-                            Image(systemName: "globe")
-                                .padding(5)
-                        })
-                            .foregroundColor(Color.yellow)
-                            .background(Color.white)
-                            .font(.system(size: 18))
-                            .cornerRadius(12)
-                            .padding(.leading, 30)
+                        
+                        NavigationLink (
+                            destination: StartView(),
+                            label: {
+                                Image(systemName: "globe")
+                                    .padding(.top, 5)
+                                    .padding(.leading, 9)
+                                    .padding(.trailing, 9)
+                                    .padding(.bottom, 5)
+                                    .foregroundColor(Color.blue)
+                                    .background(Color.white)
+                                    .font(.system(size: 18))
+                                    .cornerRadius(12)
+                                    .padding(.leading, 30)
+                                
+                            })
+                        
+            
                         
                         Spacer()
                         

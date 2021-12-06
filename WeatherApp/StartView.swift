@@ -61,6 +61,8 @@ struct StartView: View {
             }
             
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     func deleteAllWeathers() {
