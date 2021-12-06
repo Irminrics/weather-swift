@@ -23,10 +23,6 @@ Weather-SwiftUI is an app that is built using SwiftUI! Check the weather for you
 2. Open the project in Xcode 13 (Minimum)
 3. Run the app with the simulator provided
 
-
-<div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="right"></div>
-
-
 ## Limitations
 1. The UI design in this application is made specfically for iPhone 11 which means that it may not be optimised for other models.
 2. This project is still a work in progress so there might be bugs that are still pending to be fixed.
@@ -40,6 +36,7 @@ All custom code belongs to myself.
 - WeatherAPI: [OpenWeatherAPI](https://openweathermap.org)
 - Design: [Weather-App](https://www.behance.net/gallery/114764141/Weather-App) by [Nikolay Mezin](https://www.behance.net/nmiezin)
 
+<div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="right"></div>
 
 ## Author & License
 
