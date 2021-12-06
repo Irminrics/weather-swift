@@ -36,8 +36,6 @@ All custom code belongs to myself.
 - WeatherAPI: [OpenWeatherAPI](https://openweathermap.org)
 - Design: [Weather-App](https://www.behance.net/gallery/114764141/Weather-App) by [Nikolay Mezin](https://www.behance.net/nmiezin)
 
-<div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="right"></div>
-
 ## Author & License
 
 This project belongs to Jun Kang. 
