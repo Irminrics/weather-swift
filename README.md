@@ -1,6 +1,6 @@
 # Weather-SwiftUI 
 
-<div style="width: 1000px; height 600px;"><img src="" width="28%" height="28%" align="right"></div>
+<div style="width: 1000px; height 600px;"><img src="/img/weather-1.png" width="28%" height="28%" align="right"></div>
 
 
 ## Overview
