@@ -35,6 +35,7 @@ All custom code belongs to myself.
 
 - WeatherAPI: [OpenWeatherAPI](https://openweathermap.org)
 - Design: [Weather-App](https://www.behance.net/gallery/114764141/Weather-App) by [Nikolay Mezin](https://www.behance.net/nmiezin)
+- Icon: [Flaticons](https://www.flaticon.com/free-icon/cloudy_1163763) by [Iconixar](https://www.flaticon.com/authors/iconixar)
 
 ## Author & License
 
