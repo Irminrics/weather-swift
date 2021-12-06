@@ -24,7 +24,7 @@ Weather-SwiftUI is an app that is built using SwiftUI! Check the weather for you
 3. Run the app with the simulator provided
 
 
-<div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="left"></div>
+<div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="right"></div>
 
 
 ## Limitations
