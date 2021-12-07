@@ -24,6 +24,8 @@ struct DetailedCityView: View {
     @State var tempMaxForecast: [Double] = [0, 0, 0, 0, 0, 0]
     @State var tempMinForecast: [Double] = [0, 0, 0, 0, 0, 0]
     @State var weatherForecast: [String] = ["", "", "", "", "", ""]
+    @State var sunrise: Int = 0
+    @State var sunset: Int = 0
     var body: some View {
         ZStack{
             ScrollView {
@@ -463,7 +465,7 @@ struct DetailedCityView: View {
                                     Text("Sunrise")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text("06:52")
+                                    Text(Date(timeIntervalSince1970: TimeInterval(sunrise)).toTimeFormat())
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
@@ -472,7 +474,7 @@ struct DetailedCityView: View {
                                 VStack {
                                     Text("Noon")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
-                                    Text("13:29")
+                                    Text("12:00")
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                 }
                                 Spacer()
@@ -480,7 +482,7 @@ struct DetailedCityView: View {
                                     Text("Sunset")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
-                                    Text("17:27")
+                                    Text(Date(timeIntervalSince1970: TimeInterval(sunset)).toTimeFormat())
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                         .frame(maxWidth: .infinity, alignment: .trailing)
                                 }
@@ -596,6 +598,8 @@ struct DetailedCityView: View {
                         mainWeather = decodedData.weather[0].mainWeather
                         lon = decodedData.coord.lon
                         lat = decodedData.coord.lat
+                        sunrise = decodedData.sys.sunrise
+                        sunset = decodedData.sys.sunset
                         updateWeatherForecastData()
                     } catch {
                         print("Error! Something went wrong.")

@@ -10,6 +10,7 @@ import Foundation
 struct WeatherData: Decodable {
     var main: MainData
     var coord: CoordData
+    var sys: SysData
     var name: String
     var weather: [CurrentWeatherData]
     var timezone: Int
@@ -27,6 +28,12 @@ struct CoordData: Decodable {
     var lon: Double
     var lat: Double
 }
+
+struct SysData: Decodable {
+    var sunrise: Int
+    var sunset: Int
+}
+
 
 struct CurrentWeatherData: Decodable, Hashable  {
     var mainWeather: String
