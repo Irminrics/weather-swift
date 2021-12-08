@@ -11,6 +11,7 @@ struct WeatherData: Decodable {
     var main: MainData
     var coord: CoordData
     var sys: SysData
+    var wind: WindData
     var name: String
     var weather: [CurrentWeatherData]
     var timezone: Int
@@ -22,6 +23,7 @@ struct MainData: Decodable {
     var feels_like: Double
     var temp_min: Double
     var temp_max: Double
+    var humidity: Int
 }
 
 struct CoordData: Decodable {
@@ -34,6 +36,9 @@ struct SysData: Decodable {
     var sunset: Int
 }
 
+struct WindData: Decodable {
+    var speed: Double
+}
 
 struct CurrentWeatherData: Decodable, Hashable  {
     var mainWeather: String

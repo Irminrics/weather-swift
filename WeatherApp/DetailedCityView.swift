@@ -14,7 +14,6 @@ struct DetailedCityView: View {
     var bgColor: String
     var fontColor: Color
     var time: Date
-    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     @State var mainWeather = ""
     @State var feelsLike = 0.0
     @State var tempMax = 0.0
@@ -26,6 +25,10 @@ struct DetailedCityView: View {
     @State var weatherForecast: [String] = ["", "", "", "", "", ""]
     @State var sunrise: Int = 0
     @State var sunset: Int = 0
+    @State var humidity: Int = 0
+    @State var windSpeed: Double = 0.0
+    let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         ZStack{
             ScrollView {
@@ -474,7 +477,7 @@ struct DetailedCityView: View {
                                 VStack {
                                     Text("Noon")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
-                                    Text("12:00")
+                                    Text(Date(timeIntervalSince1970: TimeInterval((sunrise + sunset)/2)).toTimeFormat())
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                 }
                                 Spacer()
@@ -524,7 +527,7 @@ struct DetailedCityView: View {
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50, height: 50, alignment: .center)
                                     Spacer()
-                                    Text("62%")
+                                    Text("\(humidity)%")
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                     Spacer()
                                 }
@@ -539,7 +542,7 @@ struct DetailedCityView: View {
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50, height: 50, alignment: .center)
                                     Spacer()
-                                    Text("5m/s")
+                                    Text("\(Int(round(windSpeed)))m/s")
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                     Spacer()
                                 }
@@ -600,6 +603,8 @@ struct DetailedCityView: View {
                         lat = decodedData.coord.lat
                         sunrise = decodedData.sys.sunrise
                         sunset = decodedData.sys.sunset
+                        humidity = decodedData.main.humidity
+                        windSpeed = decodedData.wind.speed
                         updateWeatherForecastData()
                     } catch {
                         print("Error! Something went wrong.")
