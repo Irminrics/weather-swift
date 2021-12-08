@@ -25,6 +25,7 @@ struct DetailedCityView: View {
     @State var weatherForecast: [String] = ["", "", "", "", "", ""]
     @State var sunrise: Int = 0
     @State var sunset: Int = 0
+    @State var pressure: Int = 0
     @State var humidity: Int = 0
     @State var windSpeed: Double = 0.0
     let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
@@ -503,16 +504,16 @@ struct DetailedCityView: View {
                             
                             HStack {
                                 VStack {
-                                    Text("Snow")
+                                    Text("Pressure")
                                         .font(Font.custom("Montserrat-Regular", size: 18))
                                     Spacer()
-                                    Image("snow")
+                                    Image("pressure")
                                         .renderingMode(.original)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 50, height: 50, alignment: .center)
                                     Spacer()
-                                    Text("10%")
+                                    Text("\(pressure)")
                                         .font(Font.custom("Montserrat-Bold", size: 18))
                                     Spacer()
                                 }
@@ -603,6 +604,7 @@ struct DetailedCityView: View {
                         lat = decodedData.coord.lat
                         sunrise = decodedData.sys.sunrise
                         sunset = decodedData.sys.sunset
+                        pressure = decodedData.main.pressure
                         humidity = decodedData.main.humidity
                         windSpeed = decodedData.wind.speed
                         updateWeatherForecastData()

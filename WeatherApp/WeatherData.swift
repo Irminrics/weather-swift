@@ -24,6 +24,7 @@ struct MainData: Decodable {
     var temp_min: Double
     var temp_max: Double
     var humidity: Int
+    var pressure: Int
 }
 
 struct CoordData: Decodable {
