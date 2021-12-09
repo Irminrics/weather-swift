@@ -2,7 +2,7 @@
 
 <div style="width: 1000px; height 600px;"><img src="/img/weather-2.png" width="28%" height="28%" align="right"></div>
 
-![Swift](https://img.shields.io/badge/SWIFT-f47c1a.svg?style=for-the-badge&logo=Swift&logoColor=white)
+![Swift](https://img.shields.io/badge/SWIFT-F05138.svg?style=for-the-badge&logo=Swift&logoColor=white)
 
 ## Overview
 
