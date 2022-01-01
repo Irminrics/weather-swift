@@ -6,7 +6,7 @@
 
 ## Overview
 
-Weather-SwiftUI is an app that is built using SwiftUI! Check the weather for your favourite countries easily anytime and anywhere.
+Weather-SwiftUI is an app that is built using SwiftUI. Check the weather for your favourite countries easily anytime and anywhere.
 
 ## Installation
 
